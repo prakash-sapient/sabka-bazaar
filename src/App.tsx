@@ -1,10 +1,12 @@
 import { AppRoute } from "app/route/app.route";
-import { BrowserRouter} from "react-router-dom";
+import Header from "app/shared/molecules/Header";
+import { BrowserRouter } from "react-router-dom";
 import "./App.scss";
 
 function App() {
   return (
     <BrowserRouter>
+      <Header />
       <AppRoute />
     </BrowserRouter>
   );
