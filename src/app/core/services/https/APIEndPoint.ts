@@ -9,6 +9,11 @@ export const APIEndPoints = {
     method: "GET",
     api: () => `/products/index.get.json`,
   },
+
+  getBanners: {
+    method: "GET",
+    api: () => `/banners/index.get.json`,
+  },
 };
 
 export interface APIDef {
