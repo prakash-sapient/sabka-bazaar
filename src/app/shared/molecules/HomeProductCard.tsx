@@ -12,12 +12,12 @@ const HomeProductCard: React.FC<HomeProductCardProps> = (props) => {
   return (
     <ShadowContainer className="dropshadow">
       <HomeProductCardContainer>
-        <ProductDescriptionContainer left={props.left} md={8}>
+        <ProductDescriptionContainer left={props.left} sm={8}>
           <CategoryName>{props.name}</CategoryName>
           <CategoryDescription>{props.description}</CategoryDescription>
           <Button variant="primary">Explore {props.itemKey}</Button>
         </ProductDescriptionContainer>
-        <ImageContainer left={props.left} md={4}>
+        <ImageContainer left={props.left} sm={4}>
           <CategoryImage src={props.imageUrl} />
         </ImageContainer>
       </HomeProductCardContainer>
@@ -35,6 +35,7 @@ const HomeProductCardContainer = styled(Row)`
   position: relative;
   margin-bottom: 20px;
   background: #fff;
+  align-items: center; 
 `;
 const ProductDescriptionContainer = styled(Col)<any>`
   order: ${(props) => (props.left ? 2 : 1)};
