@@ -50,7 +50,8 @@ const SidebarContainer = styled.aside`
   display: none;
   @media screen and (min-width: ${breakpoints.md}) {
     background-color: ${colors.fadeGray};
-    min-height: 100%;
+    min-height: calc(100vh - 100px);
+    height: 100%;
     display: block;
   }
 `;

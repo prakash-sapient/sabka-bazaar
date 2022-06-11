@@ -11,3 +11,20 @@
     border-color: #be2857e3;
   }
 }
+
+.form-floating {
+  .form-control {
+    border-width: 0px 0px 1px 0px;
+    border-radius: 0px;
+    &:focus {
+      outline: 0px;
+      border-color: #ced4da;
+      box-shadow: none;
+    }
+  }
+  & > .form-control:focus ~ label,
+  & > .form-control:not(:placeholder-shown) ~ label,
+  & > .form-select ~ label {
+    color: rgb(31, 167, 31);
+  }
+}
