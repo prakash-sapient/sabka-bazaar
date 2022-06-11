@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Container, Row, Col, Button, ButtonGroup } from "react-bootstrap";
 import colors from "app/theme/colors";
+import breakpoints from "app/theme/breakpoints";
 
 interface ProductCardProps {
   name: string;
@@ -27,11 +28,11 @@ const ProductCard: React.FC<ProductCardProps> = ({
     <ProductCardContainer>
       <ProductTitle>{name}</ProductTitle>
       <Container fluid>
-        <Row>
-          <Col xs={6} md={12}>
+        <Row className="align-items-stretch pb-2">
+          <Col xs={6} xl={12}>
             <ProductImage src={imageURL} />
           </Col>
-          <Col xs={6} md={12}>
+          <Col xs={6} xl={12}>
             <ProductDescription>{description}</ProductDescription>
           </Col>
         </Row>
@@ -47,11 +48,11 @@ const ProductCard: React.FC<ProductCardProps> = ({
 export default ProductCard;
 
 const ProductCardContainer = styled.div`
-  min-height: 500px;
   flex-direction: column;
   justify-content: space-between;
   display: flex;
   margin-bottom: 60px;
+  padding: 10px 0px;
 `;
 
 const ProductTitle = styled.h3`
@@ -78,7 +79,8 @@ const ProductDescription = styled.p`
   -webkit-line-clamp: 4;
   overflow: hidden;
   width: 100%;
-  color: ${colors.textPrimary}
+  color: ${colors.textPrimary};
+  height: 100%;
 `;
 
 const ProductButtonGroup = styled(ButtonGroup)`
@@ -98,4 +100,7 @@ const ButtonLink = styled.span`
   cursor: none;
   color: ${colors.textPrimary};
   font-weight: 600;
+  @media screen and (max-width: ${breakpoints.xl}) {
+    display: none;
+  }
 `;

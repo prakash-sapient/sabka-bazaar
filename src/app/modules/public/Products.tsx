@@ -17,7 +17,7 @@ const Products: React.FC<any> = () => {
     productService.getProducts().then((res: any) => setProductList(res));
   };
   return (
-    <Container fluid>
+    <Container fluid className="p-0">
       <Row>
         {productList.length &&
           productList.map((elem: any) => (
