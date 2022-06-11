@@ -11,9 +11,8 @@
 .btn-primary {
   color: #fff;
   background-color: #be2857;
-  background-color: cutom-color;
   border-color: #be2857;
-  border-color: cutom-cor;
+  border-radius: 0px;
   &:hover {
     background-color: #be2857e3;
     border-color: #be2857e3;
@@ -51,10 +50,10 @@
   &::before {
     content: "";
     position: absolute;
-    width: 60%;
+    width: 70%;
     margin-left: auto;
     margin-right: auto;
-    bottom: 5px;
+    bottom: 7px;
     height: 20px;
     left: 15%;
     box-shadow: 2px 10px 11px -6px rgb(0 0 0 / 15%);

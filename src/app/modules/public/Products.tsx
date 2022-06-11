@@ -3,8 +3,8 @@ import { ProductService } from "app/core/services/product.service";
 import { ProductCard } from "app/shared/molecules";
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import styled from "styled-components";
-const hello: any = { title: "Kiwi" };
+
+
 const Products: React.FC<any> = () => {
   const productService = new ProductService();
   const [productList, setProductList] = React.useState<ProductItem[]>([]);
@@ -16,6 +16,7 @@ const Products: React.FC<any> = () => {
   const getProducts = () => {
     productService.getProducts().then((res: any) => setProductList(res));
   };
+  
   return (
     <Container fluid className="p-0">
       <Row>
