@@ -27,12 +27,12 @@ const ProductCard: React.FC<ProductCardProps> = ({
   return (
     <ProductCardContainer>
       <ProductTitle>{name}</ProductTitle>
-      <Container fluid>
+      <Container fluid className="p-0">
         <Row className="align-items-stretch pb-2">
-          <Col xs={6} xl={12}>
+          <Col xs={6} md={12}>
             <ProductImage src={imageURL} />
           </Col>
-          <Col xs={6} xl={12}>
+          <Col xs={6} md={12}>
             <ProductDescription>{description}</ProductDescription>
           </Col>
         </Row>
@@ -51,8 +51,13 @@ const ProductCardContainer = styled.div`
   flex-direction: column;
   justify-content: space-between;
   display: flex;
-  margin-bottom: 60px;
   padding: 10px 0px;
+  padding-bottom: 60px;
+  border-bottom: 1px dashed ${colors.divider};
+  @media screen and (min-width: ${breakpoints.xxl}) {
+    min-height: 550px;
+    margin-bottom: 20px;
+  }
 `;
 
 const ProductTitle = styled.h3`
@@ -62,11 +67,14 @@ const ProductTitle = styled.h3`
 
 const ProductImage = styled.img`
   max-width: 100%;
-  height: auto;
+  height: 250px;
   margin-left: auto;
   margin-right: auto;
   display: block;
   margin-bottom: 10px;
+  @media screen and (min-width: ${breakpoints.xxl}) {
+    height: 200px;
+  }
 `;
 
 const ProductDescription = styled.p`
@@ -81,6 +89,9 @@ const ProductDescription = styled.p`
   width: 100%;
   color: ${colors.textPrimary};
   height: 100%;
+  @media screen and (min-width: ${breakpoints.md}) {
+    height: 100px;
+  }
 `;
 
 const ProductButtonGroup = styled(ButtonGroup)`

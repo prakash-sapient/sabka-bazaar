@@ -15,7 +15,7 @@ const HomeProductCard: React.FC<HomeProductCardProps> = (props) => {
         <ProductDescriptionContainer left={props.left} sm={8}>
           <CategoryName>{props.name}</CategoryName>
           <CategoryDescription>{props.description}</CategoryDescription>
-          <Button variant="primary">Explore {props.itemKey}</Button>
+          <ButtonExplore variant="primary">Explore {props.itemKey}</ButtonExplore>
         </ProductDescriptionContainer>
         <ImageContainer left={props.left} sm={4}>
           <CategoryImage src={props.imageUrl} />
@@ -55,6 +55,10 @@ const CategoryDescription = styled.p`
   margin-bottom: 15px;
 `;
 
+const ButtonExplore = styled(Button)`
+  font-weight: 700;
+`
+
 const ImageContainer = styled(Col)<any>`
   order: ${(props) => (props.left ? 1 : 2)};
   position: relative;
@@ -64,3 +68,5 @@ const CategoryImage = styled.img`
   max-width: 100%;
   max-height: 100%;
 `;
+
+

@@ -1,3 +1,4 @@
+import breakpoints from "app/theme/breakpoints";
 import colors from "app/theme/colors";
 import React from "react";
 import styled from "styled-components";
@@ -22,4 +23,7 @@ const FooterContainer = styled.div`
 const CopyRightTagLine = styled.p`
     margin:0px; 
     padding-left: 15px;
+    @media screen and (max-width: ${breakpoints.xl}) {
+      text-align: center;
+    }
 `;

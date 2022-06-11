@@ -21,7 +21,7 @@ const Products: React.FC<any> = () => {
       <Row>
         {productList.length &&
           productList.map((elem: any) => (
-            <Col xxl={3} xl={4} lg={6} key={`product_item_${elem.id}`} className="align-items-stretch">
+            <Col xxl={3} xl={4} md={6} key={`product_item_${elem.id}`} className="align-items-stretch">
               <ProductCard {...elem} />
             </Col>
           ))}

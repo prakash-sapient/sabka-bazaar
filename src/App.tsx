@@ -11,12 +11,14 @@ function App() {
   return (
     <BrowserRouter>
       <Header />
-      <Container fluid className="p-0">
+      <Container fluid>
         <MainRow>
-          {/* <Col xxl={2} xl={3} md={4}>
-            <Sidebar />
-          </Col> */}
-          <Col className="pt-5 right-container">
+          <Col xxl={2} xl={3} lg={4}>
+            <Row>
+              <Sidebar />
+            </Row>
+          </Col>
+          <Col xxl={10} xl={9} lg={8} className="pt-5 right-container">
             <AppRoute />
             {/* <MyCartModal show={true} /> */}
           </Col>

@@ -48,7 +48,8 @@ export default React.memo(Sidebar);
 
 const SidebarContainer = styled.aside`
   display: none;
-  @media screen and (min-width: ${breakpoints.md}) {
+  padding-right: 0px;
+  @media screen and (min-width: ${breakpoints.lg}) {
     background-color: ${colors.fadeGray};
     min-height: calc(100vh - 100px);
     height: 100%;
@@ -65,13 +66,14 @@ const SidebarMenu = styled.ul`
 const SidebarMenuItem = styled.li`
   border-bottom: 1px solid ${colors.divider};
   padding: 15px;
-  font-weight: bold;
   text-transform: capitalize;
 `;
 
 const FormSelect = styled(Form.Select)`
   display: none;
-  @media screen and (max-width: ${breakpoints.md}) {
+  @media screen and (max-width: ${breakpoints.lg}) {
     display: block;
+    background: #bd2757;
+    color: #fff;
   }
 `;

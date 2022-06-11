@@ -1,7 +1,11 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto&family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Dosis:wght@200;300;400;500;600;700;800&display=swap");
 
 .right-container {
-  min-height: calc(100vh - 150px);
+  height: calc(100vh - 100px);
+  overflow: scroll;
+  @media screen and (max-width: 992px) {
+    padding: 0px 25px;
+  }
 }
 
 .btn-primary {
@@ -39,6 +43,7 @@
   background-color: rgb(23, 21, 21);
   border-radius: 100px;
   border: 0px !important;
+  margin: 0px 10px;
 }
 
 .dropshadow {
@@ -58,9 +63,16 @@
 
 .offcanvas-body {
   .btn-light {
-      width: 100%;
+    width: 100%;
   }
   .nav-link {
     color: #5c5c5c;
+  }
+}
+
+.navbar-light .navbar-toggler {
+  border: 0px;
+  &:focus {
+    box-shadow: none;
   }
 }

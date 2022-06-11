@@ -8,13 +8,15 @@ import "./style.scss";
 const CartItem = () => {
   return (
     <Card className="cart_item_card">
-      <Card.Img
-        variant="top"
-        src="/static/images/products/fruit-n-veg/apple.jpg"
-      />
+      <ProductImgContainer>
+        <Card.Img
+          variant="top"
+          src="/static/images/products/fruit-n-veg/apple.jpg"
+        />
+      </ProductImgContainer>
       <Card.Body>
         <Card.Title>Apple - Washington, Regular, 4 pcs</Card.Title>
-        <Row  noGutters className="">
+        <Row noGutters className="">
           <Col>
             <PriceContainer>
               <IncrementDecrementBtn />
@@ -40,5 +42,9 @@ const PriceContainer = styled.div`
   width: 200px;
   justify-content: space-between;
 `;
+
+const ProductImgContainer = styled.div`
+  max-width: 11%;
+`
 
 const UnitPrice = styled.span``;

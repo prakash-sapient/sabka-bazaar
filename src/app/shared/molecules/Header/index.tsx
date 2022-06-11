@@ -12,9 +12,11 @@ import colors from "app/theme/colors";
 const Header: React.FC<any> = ({ cartCount }) => {
   return (
     <NavbarWhite bg="light" expand="lg" sticky="top">
-      <Navbar.Brand href="#home">
-        <Logo />
-      </Navbar.Brand>
+      <LinkContainer to={ROUTES.HOME}>
+        <Navbar.Brand>
+          <Logo />
+        </Navbar.Brand>
+      </LinkContainer>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <NavLinkContainer className="me-auto">

@@ -7,17 +7,23 @@
   max-width: 40%;
   right: 0px;
   margin-right: 0px;
-  top: 70px;
+  top: 75px;
   @media screen and (max-width: 1200px) {
     max-width: 100%;
-    top: 88px;
+    top: 100px;
     margin: 0px;
+  }
+  @media screen and (max-width: 992px) {
+    top: 75px;
   }
   .modal-content {
     border-radius: 0px;
-    min-height: calc(100vh - 98px);
+    height: calc(100vh - 102px);
     @media screen and (max-width: 1200px) {
-      min-height: calc(100vh - 86px);
+      height: calc(100vh - 100px);
+    }
+    @media screen and (max-width: 992px) {
+      height: calc(100vh - 75px);
     }
     .modal-header {
       background-color: #1e2224;
