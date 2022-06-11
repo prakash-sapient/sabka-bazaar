@@ -4,7 +4,7 @@ import "./style.scss";
 import { BsX, BsChevronRight } from "react-icons/bs";
 import styled from "styled-components";
 import { CartItem } from "app/shared/molecules";
-import { LowestPriceGuaranteeCard } from "app/shared/atoms";
+import { LowestPriceGuaranteeCard, NoDataFound } from "app/shared/atoms";
 
 interface MyCartModalProps extends ModalProps {}
 
@@ -25,6 +25,8 @@ const MyCartModal: React.FC<MyCartModalProps> = (props) => {
         <CartItem />
         <CartItem />
         <CartItem />
+
+        {/* <NoDataFound /> */}
 
         <LowestPriceGuaranteeCard />
       </Modal.Body>
