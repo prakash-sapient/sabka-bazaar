@@ -1,16 +1,36 @@
+.modal-backdrop {
+  @media screen and (max-width: 1200px) {
+    display: none;
+  }
+}
 .my_cart_modal {
   max-width: 40%;
   right: 0px;
   margin-right: 0px;
   top: 70px;
+  @media screen and (max-width: 1200px) {
+    max-width: 100%;
+    top: 88px;
+    margin: 0px;
+  }
   .modal-content {
     border-radius: 0px;
     min-height: calc(100vh - 98px);
+    @media screen and (max-width: 1200px) {
+      min-height: calc(100vh - 86px);
+    }
     .modal-header {
       background-color: #1e2224;
       border-radius: 0px;
+      @media screen and (max-width: 1200px) {
+        background-color: #fff;
+      }
       .modal-title {
         color: #fff;
+        @media screen and (max-width: 1200px) {
+          color: #000;
+          font-weight: 700;
+        }
       }
       .btn-close {
         color: #fff;
@@ -19,6 +39,9 @@
         margin: 0px;
         margin-top: -12px;
         margin-right: 10px;
+        @media screen and (max-width: 1200px) {
+          display: none;
+        }
       }
     }
     .modal-body {

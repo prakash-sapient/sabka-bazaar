@@ -18,7 +18,7 @@ function App() {
           </Col>
           <Col xxl={10} xl={9} md={8} className="pt-5">
             <AppRoute />
-            {/* <MyCartModal show={true} /> */}
+            <MyCartModal show={true} />
           </Col>
         </MainRow>
       </Container>
