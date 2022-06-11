@@ -2,7 +2,12 @@ import { BASE_URL } from "app/app.config";
 export const APIEndPoints = {
   getCategories: {
     method: "GET",
-    api: (input: APIInput) => `/categories/index.get.json`,
+    api: () => `/categories/index.get.json`,
+  },
+
+  getProducts: {
+    method: "GET",
+    api: () => `/products/index.get.json`,
   },
 };
 

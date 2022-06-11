@@ -10,10 +10,10 @@ function App() {
       <Header />
       <Container fluid  className="p-0">
         <Row>
-          <Col md={2}>
+          <Col xxl={2} xl={3} md={4}>
             <Sidebar />
           </Col>
-          <Col md={10}>
+          <Col xxl={10} xl={9} md={8} className="p-5">
             <AppRoute />
           </Col>
         </Row>

@@ -1,6 +1,6 @@
 import React from "react";
 import { CategoryItem } from "app/core/models/interfaces/CategoryItem";
-import { CategoryService } from "app/core/services/Category.service";
+import { CategoryService } from "app/core/services/category.service";
 import { Form } from "react-bootstrap";
 import colors from "app/theme/colors";
 import styled from "styled-components";
