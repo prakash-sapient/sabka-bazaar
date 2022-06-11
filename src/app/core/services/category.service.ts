@@ -6,10 +6,13 @@ export class CategoryService {
   restApiService = new RestAPIService();
   async getCategory() {
     try {
-      const result = await this.restApiService.invoke(
+      let result: any = await this.restApiService.invoke(
         APIEndPoints.getCategories
       );
-      return result?.data.map((elem: any) => new CategoryItem({ ...elem }));
+      result = result?.data.map((elem: any) => new CategoryItem({ ...elem }));
+      result = result.filter((elem: any) => elem.enabled);
+      result = result.sort((a: any, b: any) => b.order - a.order);
+      return result;
     } catch (error) {
       return error;
     }

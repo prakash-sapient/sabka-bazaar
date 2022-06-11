@@ -13,10 +13,12 @@ const HomeCarousel = () => {
   }, []);
 
   const getBanners = () =>
-    homeService.getBanners().then((res) => setBanners(res));
+    homeService.getBanners().then((res) => {
+      setBanners(res)
+    });
 
   return (
-    <Carousel nextLabel="Next" prevLabel="Prev" touch>
+    <Carousel nextLabel="Next" prevLabel="Prev" touch className="dropshadow">
       {banners.length &&
         banners.map((elem, index) => (
           <Carousel.Item key={`home_banner_${elem.id}`}>

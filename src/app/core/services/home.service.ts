@@ -6,8 +6,13 @@ export class HomeService {
   restApiService = new RestAPIService();
   async getBanners() {
     try {
-      const result = await this.restApiService.invoke(APIEndPoints.getBanners);
-      return result?.data.map((elem: any) => new HomeBanner({ ...elem }));
+      let result: any = await this.restApiService.invoke(
+        APIEndPoints.getBanners
+      );
+      result = result?.data.map((elem: any) => new HomeBanner({ ...elem }));
+      result = result.filter((elem: any) => elem.isActive);
+      result = result.sort((a: any, b: any) => b - a);
+      return result;
     } catch (error) {
       return error;
     }

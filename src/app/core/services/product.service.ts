@@ -6,7 +6,9 @@ export class ProductService {
   restApiService = new RestAPIService();
   async getProducts() {
     try {
-      const result = await this.restApiService.invoke(APIEndPoints.getProducts);
+      const result: any = await this.restApiService.invoke(
+        APIEndPoints.getProducts
+      );
       return result?.data.map((elem: any) => new ProductItem({ ...elem }));
     } catch (error) {
       return error;

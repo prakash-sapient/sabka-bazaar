@@ -1,15 +1,15 @@
 export class CategoryItem {
   name = "";
-  key = "";
+  itemKey = "";
   description = "";
   enabled = false;
-  order = null;
+  order = 0;
   imageUrl = "";
   id = "";
   constructor(category: any) {
     if (category) {
       this.name = category.name;
-      this.key = category.key;
+      this.itemKey = category.key;
       this.description = category.description;
       this.enabled = category.enabled;
       this.order = category.order;
