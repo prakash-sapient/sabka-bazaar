@@ -5,13 +5,20 @@ import React from "react";
 import styled from "styled-components";
 import { Container } from "react-bootstrap";
 import { HomeProductCard } from "app/shared/molecules";
+import { useDispatch } from "react-redux";
+import { toggleSidebar } from "app/store/reducers/layout.reducer";
 
 const Home: React.FC<any> = (props) => {
   const categoryService = new CategoryService();
   const [categories, setCategories] = React.useState<CategoryItem[]>([]);
+  const dispatch = useDispatch();
 
   React.useEffect(() => {
     getCategories();
+    dispatch(toggleSidebar(false));
+    return () => {
+      dispatch(toggleSidebar(true))
+    };
   }, []);
 
   const getCategories = () =>
@@ -26,7 +33,11 @@ const Home: React.FC<any> = (props) => {
       <CategoryList>
         {categories.length &&
           categories.map((elem, index) => (
-            <HomeProductCard key={`home_product_banner_${elem.id}`} {...elem} left={(index + 1) % 2 !== 0} />
+            <HomeProductCard
+              key={`home_product_banner_${elem.id}`}
+              {...elem}
+              left={(index + 1) % 2 !== 0}
+            />
           ))}
       </CategoryList>
     </Container>

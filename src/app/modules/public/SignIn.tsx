@@ -1,8 +1,25 @@
 import React from "react";
-import { Container,Button, Row, Col, Form, FloatingLabel } from "react-bootstrap";
+import {
+  Container,
+  Button,
+  Row,
+  Col,
+  Form,
+  FloatingLabel,
+} from "react-bootstrap";
 import styled from "styled-components";
+import { useDispatch } from "react-redux";
+import { toggleSidebar } from "app/store/reducers/layout.reducer";
 
 const SignIn = () => {
+  const dispatch = useDispatch();
+
+  React.useEffect(() => {
+    dispatch(toggleSidebar(false));
+    return () => {
+      dispatch(toggleSidebar(true))
+    };
+  }, []);
   return (
     <Container>
       <Row>
@@ -19,7 +36,7 @@ const SignIn = () => {
               label="Email"
               className="mb-3"
             >
-              <Form.Control type="email" placeholder="Email address"/>
+              <Form.Control type="email" placeholder="Email address" />
             </FloatingLabel>
 
             <FloatingLabel
@@ -29,7 +46,9 @@ const SignIn = () => {
             >
               <Form.Control type="password" placeholder="Password" />
             </FloatingLabel>
-            <ButtonLogin variant="primary" className="btn-login">Login</ButtonLogin>
+            <ButtonLogin variant="primary" className="btn-login">
+              Login
+            </ButtonLogin>
           </Form>
         </Col>
       </Row>
@@ -50,4 +69,4 @@ const ButtonLogin = styled(Button)`
   border-radius: 0px;
   padding: 10px 15px;
   font-size: 16px;
-`
+`;

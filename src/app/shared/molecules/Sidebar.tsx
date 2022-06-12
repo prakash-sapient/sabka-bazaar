@@ -1,14 +1,20 @@
 import React from "react";
 import { CategoryItem } from "app/core/models/interfaces/CategoryItem";
 import { CategoryService } from "app/core/services/category.service";
-import { Form } from "react-bootstrap";
+import { Form, Col, Row } from "react-bootstrap";
 import colors from "app/theme/colors";
 import styled from "styled-components";
 import breakpoints from "app/theme/breakpoints";
+import { useSelector } from "react-redux";
+import { RootState } from "app/store/store";
+import { TOGGLE_SIDEBAR } from "app/store/actions/action.type";
 
 const Sidebar: React.FC<any> = () => {
   const categoryService = new CategoryService();
   const [filterItems, setFilterItems] = React.useState<CategoryItem[]>([]);
+  const showSidebar = useSelector(
+    (state: RootState) => state[TOGGLE_SIDEBAR].showSidebar
+  );
 
   React.useEffect(() => {
     getCategories();
@@ -16,30 +22,35 @@ const Sidebar: React.FC<any> = () => {
 
   const getCategories = () =>
     categoryService.getCategory().then((res: any) => {
-      console.log("res", res);
       setFilterItems(res);
     });
   return (
     <React.Fragment>
-      <SidebarContainer>
-        <SidebarMenu id="sidebar" aria-label="Product Filter">
-          {filterItems.length > 0 &&
-            filterItems.map((elem, index) => (
-              <SidebarMenuItem key={`product_filter_${elem.id}`}>
-                {elem.name}
-              </SidebarMenuItem>
-            ))}
-        </SidebarMenu>
-      </SidebarContainer>
+      {showSidebar && (
+        <Col xxl={2} xl={3} lg={4}>
+          <Row>
+            <SidebarContainer>
+              <SidebarMenu id="sidebar" aria-label="Product Filter">
+                {filterItems.length > 0 &&
+                  filterItems.map((elem, index) => (
+                    <SidebarMenuItem key={`product_filter_${elem.id}`}>
+                      {elem.name}
+                    </SidebarMenuItem>
+                  ))}
+              </SidebarMenu>
+            </SidebarContainer>
 
-      <FormSelect aria-label="Default select example">
-        {filterItems.length > 0 &&
-          filterItems.map((elem, index) => (
-            <option key={`product_filter-dropdown_${elem.id}`}>
-              {elem.name}
-            </option>
-          ))}
-      </FormSelect>
+            <FormSelect aria-label="Default select example">
+              {filterItems.length > 0 &&
+                filterItems.map((elem, index) => (
+                  <option key={`product_filter-dropdown_${elem.id}`}>
+                    {elem.name}
+                  </option>
+                ))}
+            </FormSelect>
+          </Row>
+        </Col>
+      )}
     </React.Fragment>
   );
 };

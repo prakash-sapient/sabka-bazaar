@@ -1,8 +1,18 @@
 import React from "react";
 import { Container,Button, Row, Col, Form, FloatingLabel } from "react-bootstrap";
 import styled from "styled-components";
+import {useDispatch} from 'react-redux'
+import { toggleSidebar } from "app/store/reducers/layout.reducer";
 
 const Registration = () => {
+  const dispatch = useDispatch();
+
+  React.useEffect(() => {
+    dispatch(toggleSidebar(false));
+    return () => {
+      dispatch(toggleSidebar(true))
+    };
+  }, [])
   return (
     <Container>
       <Row>

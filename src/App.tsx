@@ -13,12 +13,8 @@ function App() {
       <Header />
       <Container fluid>
         <MainRow>
-          <Col xxl={2} xl={3} lg={4}>
-            <Row>
-              <Sidebar />
-            </Row>
-          </Col>
-          <Col xxl={10} xl={9} lg={8} className="pt-5 right-container">
+          <Sidebar />
+          <Col className="pt-5 right-container">
             <AppRoute />
             {/* <MyCartModal show={true} /> */}
           </Col>
