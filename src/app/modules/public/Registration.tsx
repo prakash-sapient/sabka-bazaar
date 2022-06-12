@@ -53,7 +53,7 @@ const Registration = () => {
               label="Password"
               className="mb-3"
             >
-              <Form.Control type="text" placeholder="Password" />
+              <Form.Control type="password" placeholder="Password" />
             </FloatingLabel>
 
             <FloatingLabel
@@ -61,7 +61,7 @@ const Registration = () => {
               label="Confirm Password"
               className="mb-3"
             >
-              <Form.Control type="text" placeholder="Confirm Password" />
+              <Form.Control type="password" placeholder="Confirm Password" />
             </FloatingLabel>
             <ButtonRegistration variant="primary" className="btn-login">Signup</ButtonRegistration>
           </Form>
@@ -84,4 +84,6 @@ const ButtonRegistration = styled(Button)`
   border-radius: 0px;
   padding: 10px 15px;
   font-size: 16px;
+  margin-top: 30px;
+  font-weight: bold;
 `

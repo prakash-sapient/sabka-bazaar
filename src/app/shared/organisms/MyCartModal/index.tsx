@@ -44,7 +44,7 @@ const MyCartModal: React.FC<MyCartModalProps> = (props) => {
     navigate(`/${ROUTES.PRODUCTS}`, { replace: true })
   }
   return (
-    <Modal {...props} dialogClassName="my_cart_modal" show={showCartModal}>
+    <Modal {...props} dialogClassName="my_cart_modal" show={showCartModal} >
       <Modal.Header>
         <Modal.Title>My Cart ({count} items)</Modal.Title>
         <button

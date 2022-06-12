@@ -24,8 +24,14 @@ const Header: React.FC<any> = () => {
   };
   const hideCart = () => {
     dispatch(hideCartModal());
-    setShowNavbarMenu(!showNavbarMenu);
+    setShowNavbarMenu(true);
   };
+
+  const hideMenu = () => {
+    setShowNavbarMenu(false);
+  }
+
+
 
   return (
     <NavbarWhite bg="light" expand="lg" sticky="top" expanded={showNavbarMenu}>
@@ -48,21 +54,21 @@ const Header: React.FC<any> = () => {
       <Navbar.Offcanvas placement="end">
         <Offcanvas.Body>
           <Nav className="justify-content-end flex-grow-1 pe-3">
-            <LinkContainer onClick={hideCart} to={ROUTES.SIGN_IN}>
+            <LinkContainer onClick={hideMenu} to={ROUTES.SIGN_IN}>
               <NavLink href="#action1">Signin</NavLink>
             </LinkContainer>
-            <LinkContainer onClick={hideCart} to={ROUTES.REGISTRATION}>
+            <LinkContainer onClick={hideMenu} to={ROUTES.REGISTRATION}>
               <NavLink href="#action2">Registration</NavLink>
             </LinkContainer>
             <LinkContainer
-              onClick={hideCart}
+              onClick={hideMenu}
               className="mobile_link"
               to={ROUTES.HOME}
             >
               <NavLink>Home</NavLink>
             </LinkContainer>
             <LinkContainer
-              onClick={hideCart}
+              onClick={hideMenu}
               className="mobile_link"
               to={ROUTES.PRODUCTS}
             >

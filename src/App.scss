@@ -3,9 +3,6 @@
 .right-container {
   height: calc(100vh - 100px);
   overflow: scroll;
-  @media screen and (max-width: 992px) {
-    padding: 0px 25px;
-  }
 }
 
 .btn-primary {

@@ -45,6 +45,7 @@ const ProductDescriptionContainer = styled(Col)<any>`
   align-items: center;
   position: relative;
   z-index: 1;
+  padding: 20px 0px;
 `;
 const CategoryName = styled.h2`
   font-size: 20px;
@@ -53,6 +54,7 @@ const CategoryName = styled.h2`
 `;
 const CategoryDescription = styled.p`
   margin-bottom: 15px;
+  text-align: center;
 `;
 
 const ButtonExplore = styled(Button)`

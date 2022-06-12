@@ -122,4 +122,6 @@ const ButtonLogin = styled(Button)`
   border-radius: 0px;
   padding: 10px 15px;
   font-size: 16px;
+  margin-top: 30px;
+  font-weight: bold;
 `;

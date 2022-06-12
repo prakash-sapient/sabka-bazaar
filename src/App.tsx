@@ -1,5 +1,5 @@
 import { AppRoute } from "app/route/app.route";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Header, Sidebar } from "app/shared/molecules";
 import { BrowserRouter } from "react-router-dom";
