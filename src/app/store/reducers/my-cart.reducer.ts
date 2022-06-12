@@ -1,8 +1,6 @@
 import { ProductItem } from "app/core/models/interfaces/ProductItem";
 import { Action } from "../Action.interface";
 import { MyCartState } from "../slices/my-cart.slice";
-import { toast } from "react-toastify";
-import { MY_CART_STRING } from "app/core/String";
 import { USER_CART_LOCALSTORAGE } from "app/core/Constants";
 
 export const addItemReducer = (state: MyCartState, action: Action) => {
@@ -23,12 +21,12 @@ export const addItemReducer = (state: MyCartState, action: Action) => {
   }
   state.totalAmount = getTotalAmount(state.items);
   storeCartInLocalStorage(state);
-  toast(MY_CART_STRING.itemAddedSuccess, { type: "success" });
 };
 
 export const removeItemReducer = (state: MyCartState, action: Action) => {
   const items = state.items.filter((elem) => elem.id !== action.payload.id);
   state.items = items;
+  state.count = state.count - 1;
   state.totalAmount = getTotalAmount(state.items);
   storeCartInLocalStorage(state);
 };
@@ -81,10 +79,12 @@ const getTotalAmount = (items: any) => {
 
 export const setUserCartFromLocalStorage = (state: MyCartState) => {
   let userCart: any = localStorage.getItem(USER_CART_LOCALSTORAGE);
-  const { items, count, totalAmount } = JSON.parse(userCart);
-  state.items = items;
-  state.count = count;
-  state.totalAmount = totalAmount;
+  if (userCart) {
+    const { items, count, totalAmount } = JSON.parse(userCart);
+    state.items = items;
+    state.count = count;
+    state.totalAmount = totalAmount;
+  }
 };
 
 export const storeCartInLocalStorage = (state: MyCartState) => {

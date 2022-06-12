@@ -1,6 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { ProductItem } from "app/core/models/interfaces/ProductItem";
-import { addItemReducer, decreaseItemCountReducer, increaseItemCountReducer, removeItemReducer, setUserCartFromLocalStorage } from "../reducers/my-cart.reducer";
+import {
+  addItemReducer,
+  decreaseItemCountReducer,
+  increaseItemCountReducer,
+  removeItemReducer,
+  setUserCartFromLocalStorage,
+} from "../reducers/my-cart.reducer";
 import { MY_CART } from "../slices/action.type";
 
 export interface MyCartState {
@@ -16,7 +22,7 @@ const initValue: MyCartState = {
   count: 0,
   items: [],
   totalAmount: 0,
-  showCartModal: false
+  showCartModal: false,
 };
 
 const myCartSlice = createSlice({
@@ -29,12 +35,22 @@ const myCartSlice = createSlice({
     increaseCount: increaseItemCountReducer,
     decreaseCount: decreaseItemCountReducer,
     toggleCartModal: (state) => {
-      state.showCartModal = !state.showCartModal
-    }
+      state.showCartModal = !state.showCartModal;
+    },
+    hideCartModal: (state) => {
+      state.showCartModal = false;
+    },
   },
 });
 
-export const { addItem, removeItem, increaseCount, decreaseCount, toggleCartModal , setUserCart} =
-  myCartSlice.actions;
+export const {
+  addItem,
+  removeItem,
+  increaseCount,
+  decreaseCount,
+  toggleCartModal,
+  setUserCart,
+  hideCartModal,
+} = myCartSlice.actions;
 
 export default myCartSlice.reducer;

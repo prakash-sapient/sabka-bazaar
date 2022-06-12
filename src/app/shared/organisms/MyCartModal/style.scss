@@ -1,10 +1,12 @@
 .modal-backdrop {
   @media screen and (max-width: 1200px) {
     display: none;
-    .fade.modal.show {
-      pointer-events: none;
-    }
   }
+}
+
+
+.fade.modal.show {
+  pointer-events: none;
 }
 .my_cart_modal {
   max-width: 40%;
@@ -49,7 +51,7 @@
         margin-top: -12px;
         margin-right: 10px;
         @media screen and (max-width: 1200px) {
-          display: none;
+          color: #000;
         }
       }
     }

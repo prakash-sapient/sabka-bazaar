@@ -10,6 +10,11 @@ export const APIEndPoints = {
     api: () => `/products/index.get.json`,
   },
 
+  addToCart: {
+    method: "GET",
+    api: () => `/addToCart/index.post.json`,
+  },
+
   getBanners: {
     method: "GET",
     api: () => `/banners/index.get.json`,

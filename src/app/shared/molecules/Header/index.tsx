@@ -6,27 +6,35 @@ import { LinkContainer } from "react-router-bootstrap";
 import { ROUTES } from "app/route/app-route-labels";
 import { BsFillCartFill } from "react-icons/bs";
 import breakpoints from "app/theme/breakpoints";
-import "./style.scss";
 import colors from "app/theme/colors";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "app/store/store";
 import { MY_CART } from "app/store/slices/action.type";
-import { toggleCartModal } from "app/store/slices/my-cart.slice";
+import { hideCartModal, toggleCartModal } from "app/store/slices/my-cart.slice";
+import "./style.scss";
 
 const Header: React.FC<any> = () => {
+  const [showNavbarMenu, setShowNavbarMenu] = React.useState<boolean>(false);
   const count = useSelector((state: RootState) => state[MY_CART].count);
   const dispatch = useDispatch();
 
-  const toggleCart = () => dispatch(toggleCartModal());
+  const toggleCart = () => {
+    dispatch(toggleCartModal());
+    setShowNavbarMenu(!showNavbarMenu);
+  };
+  const hideCart = () => {
+    dispatch(hideCartModal());
+    setShowNavbarMenu(!showNavbarMenu);
+  };
 
   return (
-    <NavbarWhite bg="light" expand="lg" sticky="top">
+    <NavbarWhite bg="light" expand="lg" sticky="top" expanded={showNavbarMenu}>
       <LinkContainer to={ROUTES.HOME}>
         <Navbar.Brand>
           <Logo />
         </Navbar.Brand>
       </LinkContainer>
-      <Navbar.Toggle aria-controls="basic-navbar-nav" />
+      <Navbar.Toggle onClick={hideCart} aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <NavLinkContainer className="me-auto">
           <LinkContainer to={ROUTES.HOME}>
@@ -40,21 +48,30 @@ const Header: React.FC<any> = () => {
       <Navbar.Offcanvas placement="end">
         <Offcanvas.Body>
           <Nav className="justify-content-end flex-grow-1 pe-3">
-            <LinkContainer to={ROUTES.SIGN_IN}>
+            <LinkContainer onClick={hideCart} to={ROUTES.SIGN_IN}>
               <NavLink href="#action1">Signin</NavLink>
             </LinkContainer>
-            <LinkContainer to={ROUTES.REGISTRATION}>
+            <LinkContainer onClick={hideCart} to={ROUTES.REGISTRATION}>
               <NavLink href="#action2">Registration</NavLink>
             </LinkContainer>
-            <LinkContainer className="mobile_link" to={ROUTES.HOME}>
+            <LinkContainer
+              onClick={hideCart}
+              className="mobile_link"
+              to={ROUTES.HOME}
+            >
               <NavLink>Home</NavLink>
             </LinkContainer>
-            <LinkContainer className="mobile_link" to={ROUTES.PRODUCTS}>
+            <LinkContainer
+              onClick={hideCart}
+              className="mobile_link"
+              to={ROUTES.PRODUCTS}
+            >
               <NavLink>Products</NavLink>
             </LinkContainer>
           </Nav>
           <Button variant="light" onClick={toggleCart}>
-            <BsFillCartFill color={colors.primary} />
+            {/* <BsFillCartFill color={colors.primary} /> */}
+            <CartImage src={'/static/images/cart.svg'} />
             <span>{count} Items</span>
           </Button>
         </Offcanvas.Body>
@@ -85,3 +102,7 @@ const NavLinkContainer = styled(Nav)`
 const NavLink = styled(Nav.Link)`
   font-weight: bold;
 `;
+
+const CartImage = styled.img`
+  width: 25px;
+`

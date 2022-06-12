@@ -14,4 +14,15 @@ export class ProductService {
       return error;
     }
   }
+
+  async addToCart(items: ProductItem) {
+    try {
+      const result: any = await this.restApiService.invoke(
+        APIEndPoints.addToCart
+      );
+      return result?.data;
+    } catch (error) {
+      return error;
+    }
+  }
 }

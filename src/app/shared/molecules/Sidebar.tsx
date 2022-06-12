@@ -51,7 +51,7 @@ const Sidebar: React.FC<any> = () => {
               </SidebarMenu>
             </SidebarContainer>
 
-            <FormSelect aria-label="Default select example">
+            <FormSelect onS aria-label="Default select example">
               {filterItems.length > 0 &&
                 filterItems.map((elem, index) => (
                   <option key={`product_filter-dropdown_${elem.id}`}>

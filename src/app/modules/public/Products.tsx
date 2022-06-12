@@ -1,12 +1,15 @@
+import React from "react";
 import { ProductItem } from "app/core/models/interfaces/ProductItem";
 import { ProductService } from "app/core/services/product.service";
 import { ProductCard } from "app/shared/molecules";
 import { PRODUCT } from "app/store/slices/action.type";
 import { addItem } from "app/store/slices/my-cart.slice";
 import { RootState } from "app/store/store";
-import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
+
+import { toast } from "react-toastify";
+import { MY_CART_STRING } from "app/core/String";
 
 const Products: React.FC<any> = () => {
   const productService = new ProductService();
@@ -22,7 +25,7 @@ const Products: React.FC<any> = () => {
   }, []);
 
   React.useEffect(() => {
-    console.log(selectedCategory, productList)
+    console.log(selectedCategory, productList);
     filterProductList(selectedCategory);
   }, [selectedCategory]);
 
@@ -34,11 +37,18 @@ const Products: React.FC<any> = () => {
   };
 
   const filterProductList = (category: string | null) => {
-    const items = productList.filter((elem) => (elem.category === category) || category === null);
+    const items = productList.filter(
+      (elem) => elem.category === category || category === null
+    );
     setFilteredList(items);
   };
 
-  const addItemInCart = (item: ProductItem) => dispatch(addItem(item));
+  const addItemInCart = (item: ProductItem) => {
+    productService.addToCart(item).then((res: any) => {
+      dispatch(addItem(item));
+      toast(res.responseMessage, { type: "success" });
+    });
+  };
 
   return (
     <Container fluid className="p-0">
