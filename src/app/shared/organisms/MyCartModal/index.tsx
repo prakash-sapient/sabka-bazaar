@@ -5,26 +5,37 @@ import { BsX, BsChevronRight } from "react-icons/bs";
 import styled from "styled-components";
 import { CartItem } from "app/shared/molecules";
 import { LowestPriceGuaranteeCard, NoDataFound } from "app/shared/atoms";
+import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "app/store/store";
+import { MY_CART } from "app/store/slices/action.type";
+import { toggleCartModal } from "app/store/slices/my-cart.slice";
 
 interface MyCartModalProps extends ModalProps {}
 
 const MyCartModal: React.FC<MyCartModalProps> = (props) => {
+  const dispatch = useDispatch();
+  const toggleCart = () => dispatch(toggleCartModal());
+  const { showCartModal, items, count } = useSelector(
+    (state: RootState) => state[MY_CART]
+  );
   return (
-    <Modal {...props} dialogClassName="my_cart_modal">
+    <Modal {...props} dialogClassName="my_cart_modal" show={showCartModal}>
       <Modal.Header>
-        <Modal.Title>My Cart (1 items)</Modal.Title>
-        <button type="button" className="btn-close" aria-label="Close">
+        <Modal.Title>My Cart ({count} items)</Modal.Title>
+        <button
+          onClick={toggleCart}
+          type="button"
+          className="btn-close"
+          aria-label="Close"
+        >
           <BsX size={30} />
         </button>
       </Modal.Header>
       <Modal.Body>
-        <CartItem />
-        <CartItem />
-        <CartItem />
-        <CartItem />
-        <CartItem />
-        <CartItem />
-        <CartItem />
+        {items.length &&
+          items.map((elem, index) => (
+            <CartItem key={`my_cart_item_${elem.id}`} {...elem} />
+          ))}
 
         {/* <NoDataFound /> */}
 

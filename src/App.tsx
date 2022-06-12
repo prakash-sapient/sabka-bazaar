@@ -18,7 +18,7 @@ function App() {
           <Sidebar />
           <Col className="pt-5 right-container">
             <AppRoute />
-            {/* <MyCartModal show={true} /> */}
+            <MyCartModal />
           </Col>
         </MainRow>
       </Container>

@@ -8,6 +8,7 @@ export interface MyCartState {
   count: number;
   items: ProductItem[];
   totalAmount: number;
+  showCartModal: boolean;
 }
 
 const initValue: MyCartState = {
@@ -15,6 +16,7 @@ const initValue: MyCartState = {
   count: 0,
   items: [],
   totalAmount: 0,
+  showCartModal: false
 };
 
 const myCartSlice = createSlice({
@@ -25,10 +27,13 @@ const myCartSlice = createSlice({
     removeItem: (state, action) => {},
     increaseCount: (state, action) => {},
     decreaseCount: (state, action) => {},
+    toggleCartModal: (state) => {
+      state.showCartModal = !state.showCartModal
+    }
   },
 });
 
-export const { addItem, removeItem, increaseCount, decreaseCount } =
+export const { addItem, removeItem, increaseCount, decreaseCount, toggleCartModal } =
   myCartSlice.actions;
 
 export default myCartSlice.reducer;

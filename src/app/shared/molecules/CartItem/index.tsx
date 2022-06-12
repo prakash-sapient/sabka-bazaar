@@ -4,28 +4,36 @@ import styled from "styled-components";
 import { Card, Row, Col } from "react-bootstrap";
 import { BsX } from "react-icons/bs";
 import "./style.scss";
+import { ProductItem } from "app/core/models/interfaces/ProductItem";
 
-const CartItem = () => {
+const CartItem: React.FC<ProductItem> = ({
+  name,
+  price,
+  imageURL,
+  id,
+  count,
+}) => {
   return (
     <Card className="cart_item_card">
       <ProductImgContainer>
-        <Card.Img
-          variant="top"
-          src="/static/images/products/fruit-n-veg/apple.jpg"
-        />
+        <Card.Img variant="top" src={imageURL} />
       </ProductImgContainer>
       <Card.Body>
-        <Card.Title>Apple - Washington, Regular, 4 pcs</Card.Title>
+        <Card.Title>{name}</Card.Title>
         <Row noGutters className="">
           <Col>
             <PriceContainer>
-              <IncrementDecrementBtn />
+              <IncrementDecrementBtn
+                onDecrement={() => {}}
+                onIncrement={() => {}}
+                count={count}
+              />
               <BsX size={30} />
-              <UnitPrice>Rs.187</UnitPrice>
+              <UnitPrice>Rs.{price}</UnitPrice>
             </PriceContainer>
           </Col>
           <Col className="text-end">
-            <UnitPrice>Rs.187</UnitPrice>
+            <UnitPrice>Rs.{count * price}</UnitPrice>
           </Col>
         </Row>
       </Card.Body>
@@ -45,6 +53,6 @@ const PriceContainer = styled.div`
 
 const ProductImgContainer = styled.div`
   max-width: 11%;
-`
+`;
 
 const UnitPrice = styled.span``;

@@ -8,12 +8,16 @@ import { BsFillCartFill } from "react-icons/bs";
 import breakpoints from "app/theme/breakpoints";
 import "./style.scss";
 import colors from "app/theme/colors";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "app/store/store";
 import { MY_CART } from "app/store/slices/action.type";
+import { toggleCartModal } from "app/store/slices/my-cart.slice";
 
 const Header: React.FC<any> = () => {
   const count = useSelector((state: RootState) => state[MY_CART].count);
+  const dispatch = useDispatch();
+
+  const toggleCart = () => dispatch(toggleCartModal());
 
   return (
     <NavbarWhite bg="light" expand="lg" sticky="top">
@@ -49,7 +53,7 @@ const Header: React.FC<any> = () => {
               <NavLink>Products</NavLink>
             </LinkContainer>
           </Nav>
-          <Button variant="light">
+          <Button variant="light" onClick={toggleCart}>
             <BsFillCartFill color={colors.primary} />
             <span>{count} Items</span>
           </Button>

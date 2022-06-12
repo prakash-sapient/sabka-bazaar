@@ -2,12 +2,30 @@ import React from "react";
 import styled from "styled-components";
 import { BsFillDashCircleFill, BsPlusCircleFill } from "react-icons/bs";
 import colors from "app/theme/colors";
-const IncrementDecrementBtn = () => {
+
+interface IncrementDecrementBtnProps {
+  onIncrement: (event: any) => void;
+  onDecrement: (event: any) => void;
+  count: number;
+}
+const IncrementDecrementBtn: React.FC<IncrementDecrementBtnProps> = ({
+  onDecrement,
+  onIncrement,
+  count,
+}) => {
   return (
     <IncrementDecrementBtnContainer>
-      <BsFillDashCircleFill color={colors.primary} size={22} />
-      <Quantity>1</Quantity>
-      <BsPlusCircleFill color={colors.primary} size={22}/>
+      <BsFillDashCircleFill
+        color={colors.primary}
+        size={22}
+        onClick={onDecrement}
+      />
+      <Quantity>{count}</Quantity>
+      <BsPlusCircleFill
+        color={colors.primary}
+        onClick={onIncrement}
+        size={22}
+      />
     </IncrementDecrementBtnContainer>
   );
 };
@@ -23,5 +41,5 @@ const IncrementDecrementBtnContainer = styled.div`
 `;
 
 const Quantity = styled.span`
-    font-weight: 600px;
-`
+  font-weight: 600px;
+`;

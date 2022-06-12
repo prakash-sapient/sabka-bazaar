@@ -1,6 +1,6 @@
 export class ProductItem {
   name = "";
-  imageURL = null;
+  imageURL = '';
   description = "";
   price = 0;
   stock = 0;
