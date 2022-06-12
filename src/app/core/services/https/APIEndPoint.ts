@@ -1,5 +1,13 @@
 import { BASE_URL } from "app/app.config";
 export const APIEndPoints = {
+  login: {
+    method: "GET",
+    api: () => `/user/index.post.json`,
+  },
+  registration: {
+    method: "GET",
+    api: () => `/user/index.post.json`,
+  },
   getCategories: {
     method: "GET",
     api: () => `/categories/index.get.json`,

@@ -10,16 +10,50 @@ import {
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { toggleSidebar } from "app/store/reducers/layout.reducer";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import { UserService } from "app/core/services/user.service";
+import { toast } from "react-toastify";
+import { LOGIN_MESSAGE } from "app/core/String";
+import { useNavigate } from "react-router-dom";
+import { ROUTES } from "app/route/app-route-labels";
 
 const SignIn = () => {
+  const navigate = useNavigate();
+  const userService = new UserService();
   const dispatch = useDispatch();
 
   React.useEffect(() => {
     dispatch(toggleSidebar(false));
     return () => {
-      dispatch(toggleSidebar(true))
+      dispatch(toggleSidebar(true));
     };
   }, []);
+
+  const login = (data: any) => {
+    userService.login(data).then((res) => {
+      if (res.email === data.email) {
+        toast(LOGIN_MESSAGE.loginSuccess, { type: "success" });
+        navigate(`/${ROUTES.PRODUCTS}`, { replace: true });
+      } else {
+        toast(LOGIN_MESSAGE.invalid, { type: "error" });
+      }
+    });
+  };
+
+  const signInFormSchema = Yup.object().shape({
+    password: Yup.string().required("Required"),
+    email: Yup.string().email("Invalid email").required("Required"),
+  });
+  const signInForm = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+    validationSchema: signInFormSchema,
+    onSubmit: login,
+  });
+
   return (
     <Container>
       <Row>
@@ -30,13 +64,20 @@ const SignIn = () => {
           </LoginTabLine>
         </Col>
         <Col lg={5}>
-          <Form>
+          <Form onSubmit={signInForm.handleSubmit}>
             <FloatingLabel
               controlId="floatingInput"
               label="Email"
               className="mb-3"
             >
-              <Form.Control type="email" placeholder="Email address" />
+              <Form.Control
+                onChange={(event) =>
+                  signInForm.handleChange("email")(event.target.value)
+                }
+                value={signInForm.values.email}
+                type="email"
+                placeholder="Email address"
+              />
             </FloatingLabel>
 
             <FloatingLabel
@@ -44,9 +85,21 @@ const SignIn = () => {
               label="Password"
               className="mb-3"
             >
-              <Form.Control type="password" placeholder="Password" />
+              <Form.Control
+                onChange={(event) =>
+                  signInForm.handleChange("password")(event.target.value)
+                }
+                value={signInForm.values.password}
+                type="password"
+                placeholder="Password"
+              />
             </FloatingLabel>
-            <ButtonLogin variant="primary" className="btn-login">
+            <ButtonLogin
+              disabled={!signInForm.isValid}
+              variant="primary"
+              className="btn-login"
+              type="submit"
+            >
               Login
             </ButtonLogin>
           </Form>

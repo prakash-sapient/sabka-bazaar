@@ -9,7 +9,6 @@ import { Container, Row, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 
 import { toast } from "react-toastify";
-import { MY_CART_STRING } from "app/core/String";
 
 const Products: React.FC<any> = () => {
   const productService = new ProductService();
