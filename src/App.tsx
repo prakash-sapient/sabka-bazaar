@@ -8,8 +8,19 @@ import "./App.scss";
 import styled from "styled-components";
 import { MyCartModal } from "app/shared/organisms";
 import Footer from "app/shared/molecules/Footer";
+import React from "react";
+import { useDispatch } from "react-redux";
+import { setUserCart } from "app/store/slices/my-cart.slice";
 
 function App() {
+  const dispatch = useDispatch();
+
+  React.useEffect(() => {
+    setUserCartFromLocalStorage();
+  }, []);
+
+  const setUserCartFromLocalStorage = () => dispatch(setUserCart());
+
   return (
     <BrowserRouter>
       <Header />
