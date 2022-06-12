@@ -5,9 +5,10 @@ import { Form, Col, Row } from "react-bootstrap";
 import colors from "app/theme/colors";
 import styled from "styled-components";
 import breakpoints from "app/theme/breakpoints";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "app/store/store";
 import { TOGGLE_SIDEBAR } from "app/store/slices/action.type";
+import { setProductFilter } from "app/store/slices/products.slice";
 
 const Sidebar: React.FC<any> = () => {
   const categoryService = new CategoryService();
@@ -15,6 +16,7 @@ const Sidebar: React.FC<any> = () => {
   const showSidebar = useSelector(
     (state: RootState) => state[TOGGLE_SIDEBAR].showSidebar
   );
+  const dispatch = useDispatch();
 
   React.useEffect(() => {
     getCategories();
@@ -22,8 +24,14 @@ const Sidebar: React.FC<any> = () => {
 
   const getCategories = () =>
     categoryService.getCategory().then((res: any) => {
+      const allCategory = new CategoryItem({name: 'All', id: null})
+      res.unshift(allCategory);
       setFilterItems(res);
     });
+
+  const onSelectFilter = (category: string) => {
+    dispatch(setProductFilter(category));
+  };
   return (
     <React.Fragment>
       {showSidebar && (
@@ -33,7 +41,10 @@ const Sidebar: React.FC<any> = () => {
               <SidebarMenu id="sidebar" aria-label="Product Filter">
                 {filterItems.length > 0 &&
                   filterItems.map((elem, index) => (
-                    <SidebarMenuItem key={`product_filter_${elem.id}`}>
+                    <SidebarMenuItem
+                      onClick={() => onSelectFilter(elem.id)}
+                      key={`product_filter_${elem.id}`}
+                    >
                       {elem.name}
                     </SidebarMenuItem>
                   ))}

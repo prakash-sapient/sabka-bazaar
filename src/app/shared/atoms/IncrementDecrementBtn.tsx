@@ -19,12 +19,14 @@ const IncrementDecrementBtn: React.FC<IncrementDecrementBtnProps> = ({
         color={colors.primary}
         size={22}
         onClick={onDecrement}
+        className="cursor-pointer"
       />
       <Quantity>{count}</Quantity>
       <BsPlusCircleFill
         color={colors.primary}
         onClick={onIncrement}
         size={22}
+        className="cursor-pointer"
       />
     </IncrementDecrementBtnContainer>
   );

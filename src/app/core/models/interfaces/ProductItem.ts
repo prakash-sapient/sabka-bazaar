@@ -18,6 +18,7 @@ export class ProductItem {
       this.stock = product.stock;
       this.sku = product.sku;
       this.id = product.id;
+      this.category = product.category;
       this.count = product.count;
     }
   }

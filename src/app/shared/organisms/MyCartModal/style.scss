@@ -1,6 +1,9 @@
 .modal-backdrop {
   @media screen and (max-width: 1200px) {
     display: none;
+    .fade.modal.show {
+      pointer-events: none;
+    }
   }
 }
 .my_cart_modal {
