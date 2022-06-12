@@ -1,11 +1,18 @@
 import React from "react";
 import styled from "styled-components";
+import {Button} from 'react-bootstrap'
 
-const NoDataFound = () => {
+const NoDataFound: React.FC<any> = ({onClick}) => {
   return (
     <NoDataFoundContainer>
       <Heading>No Items in your cart</Heading>
       <TabLine>Your favorite items are just a click away</TabLine>
+      <Button
+        onClick={onClick}
+        variant="primary"
+      >
+        Add Items in Cart
+      </Button>
     </NoDataFoundContainer>
   );
 };
@@ -19,7 +26,6 @@ const NoDataFoundContainer = styled.div`
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  
 `;
 
 const Heading = styled.h1`
@@ -29,5 +35,5 @@ const Heading = styled.h1`
 `;
 
 const TabLine = styled.p`
-  margin: 10px 0px 0px;
+  margin: 10px 0px 10px;
 `;

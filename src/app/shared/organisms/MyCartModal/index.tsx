@@ -8,6 +8,7 @@ import { LowestPriceGuaranteeCard, NoDataFound } from "app/shared/atoms";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "app/store/store";
 import { MY_CART } from "app/store/slices/action.type";
+import { useNavigate } from "react-router-dom";
 import {
   decreaseCount,
   increaseCount,
@@ -15,11 +16,14 @@ import {
   toggleCartModal,
 } from "app/store/slices/my-cart.slice";
 import { ProductItem } from "app/core/models/interfaces/ProductItem";
+import { ROUTES } from "app/route/app-route-labels";
 
 interface MyCartModalProps extends ModalProps {}
 
 const MyCartModal: React.FC<MyCartModalProps> = (props) => {
   const dispatch = useDispatch();
+
+  const navigate = useNavigate();
 
   const toggleCart = () => dispatch(toggleCartModal());
 
@@ -34,6 +38,11 @@ const MyCartModal: React.FC<MyCartModalProps> = (props) => {
   const { showCartModal, items, count, totalAmount } = useSelector(
     (state: RootState) => state[MY_CART]
   );
+
+  const gotoProductScreen = () => {
+    toggleCart();
+    navigate(`/${ROUTES.PRODUCTS}`, { replace: true })
+  }
   return (
     <Modal {...props} dialogClassName="my_cart_modal" show={showCartModal}>
       <Modal.Header>
@@ -48,7 +57,7 @@ const MyCartModal: React.FC<MyCartModalProps> = (props) => {
         </button>
       </Modal.Header>
       <Modal.Body>
-        {items.length &&
+        {items.length > 0 &&
           items.map((elem, index) => (
             <CartItem
               increaseCount={() => increaseItemCountInCart(elem)}
@@ -59,21 +68,27 @@ const MyCartModal: React.FC<MyCartModalProps> = (props) => {
             />
           ))}
 
-        {/* <NoDataFound /> */}
+        {items.length === 0 && (
+          <React.Fragment>
+            <NoDataFound onClick={gotoProductScreen} />
+          </React.Fragment>
+        )}
 
-        <LowestPriceGuaranteeCard />
+        {items.length > 0 && <LowestPriceGuaranteeCard />}
       </Modal.Body>
-      <Modal.Footer>
-        <PromoCodeTagLine>
-          Promo code can be applied on payment page
-        </PromoCodeTagLine>
-        <Button variant="primary" className="btn-checkout">
-          <span>Proceed to Checkout</span>
-          <span>
-            Rs.{totalAmount} <BsChevronRight />
-          </span>
-        </Button>
-      </Modal.Footer>
+      {items.length > 0 && (
+        <Modal.Footer>
+          <PromoCodeTagLine>
+            Promo code can be applied on payment page
+          </PromoCodeTagLine>
+          <Button variant="primary" className="btn-checkout">
+            <span>Proceed to Checkout</span>
+            <span>
+              Rs.{totalAmount} <BsChevronRight />
+            </span>
+          </Button>
+        </Modal.Footer>
+      )}
     </Modal>
   );
 };
