@@ -7,6 +7,7 @@ export class ProductItem {
   category = "";
   sku = "";
   id = "";
+  count = 0;
 
   constructor(product: any) {
     if (product) {
@@ -17,6 +18,7 @@ export class ProductItem {
       this.stock = product.stock;
       this.sku = product.sku;
       this.id = product.id;
+      this.count = product.count;
     }
   }
 }

@@ -38,7 +38,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
         </Row>
         <ProductButtonGroup>
           <ButtonLink className="btn btn-link">MRP Rs.{price}</ButtonLink>
-          <ButtonBuy variant="secondary">Buy Now</ButtonBuy>
+          <ButtonBuy onClick={onSelect} variant="secondary">Buy Now</ButtonBuy>
         </ProductButtonGroup>
       </Container>
     </ProductCardContainer>

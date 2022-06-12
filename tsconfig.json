@@ -32,7 +32,7 @@
       "@organisms/*": ["src/app/shared/organisms/*"],
       "@hooks/*": ["src/app/shared/hooks/*"],
       "@actions/*": ["src/app/store/action/*"],
-      "@reducers/*": ["src/app/store/reducers/*"],
+      "@reducers/*": ["src/app/store/slices/*"],
       "@sagas/*": ["src/app/store/sagas/*"],
     }
   },

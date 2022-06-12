@@ -7,7 +7,7 @@ import styled from "styled-components";
 import breakpoints from "app/theme/breakpoints";
 import { useSelector } from "react-redux";
 import { RootState } from "app/store/store";
-import { TOGGLE_SIDEBAR } from "app/store/actions/action.type";
+import { TOGGLE_SIDEBAR } from "app/store/slices/action.type";
 
 const Sidebar: React.FC<any> = () => {
   const categoryService = new CategoryService();

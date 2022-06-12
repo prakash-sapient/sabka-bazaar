@@ -1,4 +1,6 @@
 import { AppRoute } from "app/route/app.route";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { Header, Sidebar } from "app/shared/molecules";
 import { BrowserRouter } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
@@ -21,6 +23,7 @@ function App() {
         </MainRow>
       </Container>
       <Footer />
+      <ToastContainer />
     </BrowserRouter>
   );
 }

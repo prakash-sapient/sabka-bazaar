@@ -8,8 +8,13 @@ import { BsFillCartFill } from "react-icons/bs";
 import breakpoints from "app/theme/breakpoints";
 import "./style.scss";
 import colors from "app/theme/colors";
+import { useSelector } from "react-redux";
+import { RootState } from "app/store/store";
+import { MY_CART } from "app/store/slices/action.type";
 
-const Header: React.FC<any> = ({ cartCount }) => {
+const Header: React.FC<any> = () => {
+  const count = useSelector((state: RootState) => state[MY_CART].count);
+
   return (
     <NavbarWhite bg="light" expand="lg" sticky="top">
       <LinkContainer to={ROUTES.HOME}>
@@ -46,7 +51,7 @@ const Header: React.FC<any> = ({ cartCount }) => {
           </Nav>
           <Button variant="light">
             <BsFillCartFill color={colors.primary} />
-            <span>{cartCount} Items</span>
+            <span>{count} Items</span>
           </Button>
         </Offcanvas.Body>
       </Navbar.Offcanvas>
