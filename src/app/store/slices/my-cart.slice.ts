@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { ProductItem } from "app/core/models/interfaces/ProductItem";
-import { addItemReducer } from "../reducers/my-cart.reducer";
+import { addItemReducer, decreaseItemCountReducer, increaseItemCountReducer, removeItemReducer } from "../reducers/my-cart.reducer";
 import { MY_CART } from "../slices/action.type";
 
 export interface MyCartState {
@@ -24,9 +24,9 @@ const myCartSlice = createSlice({
   initialState: initValue,
   reducers: {
     addItem: addItemReducer,
-    removeItem: (state, action) => {},
-    increaseCount: (state, action) => {},
-    decreaseCount: (state, action) => {},
+    removeItem: removeItemReducer,
+    increaseCount: increaseItemCountReducer,
+    decreaseCount: decreaseItemCountReducer,
     toggleCartModal: (state) => {
       state.showCartModal = !state.showCartModal
     }

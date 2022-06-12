@@ -11,10 +11,10 @@ export const AppRoute = () => (
   <Routes>
     <Route path="/" element={<Home />} />
     <Route path={ROUTES.HOME} element={<Home />} />
-    <Route
+    {/* <Route
       path={ROUTES.MY_CART}
       element={<ProtectedRoute Component={MyCart} />}
-    />
+    /> */}
     <Route path={ROUTES.PRODUCTS} element={<Products />} />
     <Route path={ROUTES.REGISTRATION} element={<Registration />} />
     <Route path={ROUTES.SIGN_IN} element={<SignIn />} />

@@ -8,14 +8,30 @@ import { LowestPriceGuaranteeCard, NoDataFound } from "app/shared/atoms";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "app/store/store";
 import { MY_CART } from "app/store/slices/action.type";
-import { toggleCartModal } from "app/store/slices/my-cart.slice";
+import {
+  decreaseCount,
+  increaseCount,
+  removeItem,
+  toggleCartModal,
+} from "app/store/slices/my-cart.slice";
+import { ProductItem } from "app/core/models/interfaces/ProductItem";
 
 interface MyCartModalProps extends ModalProps {}
 
 const MyCartModal: React.FC<MyCartModalProps> = (props) => {
   const dispatch = useDispatch();
+
   const toggleCart = () => dispatch(toggleCartModal());
-  const { showCartModal, items, count } = useSelector(
+
+  const removeItemFromCart = (item: ProductItem) => dispatch(removeItem(item));
+
+  const increaseItemCountInCart = (item: ProductItem) =>
+    dispatch(increaseCount(item));
+
+  const decreaseItemCountInCart = (item: ProductItem) =>
+    dispatch(decreaseCount(item));
+
+  const { showCartModal, items, count, totalAmount } = useSelector(
     (state: RootState) => state[MY_CART]
   );
   return (
@@ -34,7 +50,13 @@ const MyCartModal: React.FC<MyCartModalProps> = (props) => {
       <Modal.Body>
         {items.length &&
           items.map((elem, index) => (
-            <CartItem key={`my_cart_item_${elem.id}`} {...elem} />
+            <CartItem
+              increaseCount={() => increaseItemCountInCart(elem)}
+              decreaseCount={() => decreaseItemCountInCart(elem)}
+              removeItem={() => removeItemFromCart(elem)}
+              key={`my_cart_item_${elem.id}`}
+              {...elem}
+            />
           ))}
 
         {/* <NoDataFound /> */}
@@ -48,7 +70,7 @@ const MyCartModal: React.FC<MyCartModalProps> = (props) => {
         <Button variant="primary" className="btn-checkout">
           <span>Proceed to Checkout</span>
           <span>
-            Rs.187 <BsChevronRight />
+            Rs.{totalAmount} <BsChevronRight />
           </span>
         </Button>
       </Modal.Footer>

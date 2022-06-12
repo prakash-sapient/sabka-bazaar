@@ -2,16 +2,26 @@ import { IncrementDecrementBtn } from "app/shared/atoms";
 import React from "react";
 import styled from "styled-components";
 import { Card, Row, Col } from "react-bootstrap";
-import { BsX } from "react-icons/bs";
+import { BsX, BsFillTrashFill } from "react-icons/bs";
 import "./style.scss";
 import { ProductItem } from "app/core/models/interfaces/ProductItem";
+import colors from "app/theme/colors";
 
-const CartItem: React.FC<ProductItem> = ({
+interface CartItemProps extends ProductItem {
+  removeItem: (event: any) => void;
+  increaseCount: (event: any) => void;
+  decreaseCount: (event: any) => void;
+}
+
+const CartItem: React.FC<CartItemProps> = ({
   name,
   price,
   imageURL,
   id,
   count,
+  removeItem,
+  decreaseCount,
+  increaseCount,
 }) => {
   return (
     <Card className="cart_item_card">
@@ -19,13 +29,20 @@ const CartItem: React.FC<ProductItem> = ({
         <Card.Img variant="top" src={imageURL} />
       </ProductImgContainer>
       <Card.Body>
-        <Card.Title>{name}</Card.Title>
+        <Row className="justify-content-between">
+          <Col xs={11}>
+            <Card.Title>{name}</Card.Title>
+          </Col>
+          <Col xs={1} className="text-end">
+            <BsFillTrashFill className="cursor-pointer" onClick={removeItem} color={colors.danger} />
+          </Col>
+        </Row>
         <Row noGutters className="">
           <Col>
             <PriceContainer>
               <IncrementDecrementBtn
-                onDecrement={() => {}}
-                onIncrement={() => {}}
+                onDecrement={decreaseCount}
+                onIncrement={increaseCount}
                 count={count}
               />
               <BsX size={30} />
