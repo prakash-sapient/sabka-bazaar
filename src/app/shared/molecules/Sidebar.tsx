@@ -24,7 +24,7 @@ const Sidebar: React.FC<any> = () => {
 
   const getCategories = () =>
     categoryService.getCategory().then((res: any) => {
-      const allCategory = new CategoryItem({name: 'All', id: null})
+      const allCategory = new CategoryItem({ name: "All", id: null });
       res.unshift(allCategory);
       setFilterItems(res);
     });
@@ -51,10 +51,16 @@ const Sidebar: React.FC<any> = () => {
               </SidebarMenu>
             </SidebarContainer>
 
-            <FormSelect onS aria-label="Default select example">
+            <FormSelect
+              onChange={(e: any) => onSelectFilter(e.target.value)}
+              aria-label="Default select example"
+            >
               {filterItems.length > 0 &&
                 filterItems.map((elem, index) => (
-                  <option key={`product_filter-dropdown_${elem.id}`}>
+                  <option
+                    key={`product_filter-dropdown_${elem.id}`}
+                    value={elem.id}
+                  >
                     {elem.name}
                   </option>
                 ))}
