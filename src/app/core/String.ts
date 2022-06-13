@@ -4,6 +4,6 @@ export const MY_CART_MESSAGE = {
 
 export const LOGIN_MESSAGE = {
     loginSuccess: 'Login Successfully',
-    invalid: 'Provide valid credential',
+    invalid: 'Invalid credential',
 }
 

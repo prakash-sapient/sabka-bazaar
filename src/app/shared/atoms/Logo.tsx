@@ -1,5 +1,5 @@
+import React from 'react';
 import breakpoints from "app/theme/breakpoints";
-import React from "react";
 import styled from "styled-components";
 
 const Logo = () => {
